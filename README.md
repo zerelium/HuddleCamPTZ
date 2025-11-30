@@ -6,6 +6,8 @@ This is a personal project that provides:
 
 The Node.js library offers extensive functionality, while the GUI focuses on simplicity, currently supporting pan-tilt control with plans to add zoom.
 
+<br/>
+
 ## Features
 
 ### Node.js Library
@@ -19,6 +21,7 @@ The Node.js library offers extensive functionality, while the GUI focuses on sim
 - Real-time WebSocket communication.
 - Keyboard support.
 - Planned zoom functionality (untested due to hardware limitations).
+<br/>
 
 ## Getting Started
 
@@ -50,6 +53,7 @@ The Node.js library offers extensive functionality, while the GUI focuses on sim
 	npm start
 	```
 - Open the GUI at `http://localhost:PORT`.
+<br/>
 
 ## Usage
 
@@ -69,10 +73,12 @@ camera.on('open', () => {
 - Use on-screen controls or arrow keys for pan-tilt.
 - Adjust speed with sliders.
 - Enable video feed for live output.
+<br/>
 
 ## Limitations
 - GUI zoom control is pending hardware testing.
 - Some VISCA commands are not implemented.
+<br/>
 
 ## Future Plans
 - Extend the Node.js library with more commands.
