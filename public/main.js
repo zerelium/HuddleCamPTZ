@@ -64,7 +64,7 @@ videoFeed.addEventListener('click', (event) => {
 
 
 	socket.emit('getPosition');
-	socket.emit('moveTo', panSpeed, tiltSpeed, clickX, clickY, videoFeed.clientWidth, videoFeed.clientHeight, true);
+	socket.emit('moveTo', panSpeed, tiltSpeed, clickX, clickY, true);
 });
 
 window.testMove = ((relX, relY) => {
@@ -73,7 +73,7 @@ window.testMove = ((relX, relY) => {
 	console.log('Test move to ', relX, relY);
 
 	socket.emit('getPosition');
-	socket.emit('moveTo', relX, relY, panSpeed, tiltSpeed, true);
+	socket.emit('moveTo', panSpeed, tiltSpeed, relX, relY, true);
 });
 
 const sliders = document.querySelectorAll('input[type="range"]');

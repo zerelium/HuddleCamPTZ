@@ -90,8 +90,8 @@ io.on('connection', (socket) => {
 			socket.emit('position', position);
 		});
 	});
-	socket.on('moveTo', (panSpeed, tiltSpeed, x, y, W, H, relative) => {
-		Camera.moveTo(panSpeed, tiltSpeed, x, y, W, H, relative); // TODO
+	socket.on('moveTo', (panSpeed, tiltSpeed, x, y, relative) => {
+		Camera.moveTo(panSpeed, tiltSpeed, x, y, relative); // TODO
 	})
 	socket.on('moveStop', () => {
 		Camera.stop();

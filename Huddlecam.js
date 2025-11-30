@@ -228,8 +228,6 @@ class Huddlecam extends EventEmitter {
 	 * @param {Number} ts                Tilt speed
 	 * @param {Number} pan               A number between 0-2016 
 	 * @param {Number} tilt              A number between 0-456
-	 * @param {Number} [width=0]        The width of the video frame, defaults to 0. Used for relative positioning
-	 * @param {Number} [height=0]       The height of the video frame, defaults to 0. Used for relative positioning
 	 * @param {Boolean} [relative=false] Whether the position is relative or absolute, defaults to false
 	 * @returns {Promise<CameraResponse>} The response from the camera
 	 * 
@@ -238,7 +236,7 @@ class Huddlecam extends EventEmitter {
 	 * Camera.moveTo(3, 3, 0, 0); // Move the camera to the bottom-left
 	 * Camera.moveTo(3, 3, 2016, 456); // Move the camera to the top-right
 	 */
-	moveTo(ps, ts, pan, tilt, width=0, height=0, relative = false) { 
+	moveTo(ps, ts, pan, tilt, relative = false) { 
 		const panSpeed = this.getPanSpeed(ps);
 		const tiltSpeed = this.getTiltSpeed(ts);
 
@@ -247,7 +245,7 @@ class Huddlecam extends EventEmitter {
 		const panPos = this.#toHex(x);
 		const tiltPos = this.#toHex(y);
 
-		console.log('moveTo', x, y, panPos, tiltPos);
+		console.log('moveTo', pan, x, tilt, y, panPos, tiltPos);
 
 		const rel = relative ? '03' : '02';
 
