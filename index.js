@@ -5,12 +5,11 @@ import { Server as SocketIOServer } from "socket.io";
 import dotenv from 'dotenv';
 import path from "path";
 import { Huddlecam, Direction, Exposure } from './Huddlecam.js';
-// import readline
 import readline from 'readline';
 
 dotenv.config();
 
-// Setup camera
+// Get camera settings
 const serialPORT = process.env.SERIAL_PORT;
 const baudRate = process.env.BAUDRATE;
 if(!serialPORT) {
@@ -22,6 +21,7 @@ if(!baudRate) {
 	process.exit(1);
 }
 
+// Setup camera
 const Camera = new Huddlecam(serialPORT, parseInt(baudRate));
 // Camera.on('data', (data) => console.log('Camera data:', data.toString('hex')));
 Camera.on('error', (error) => console.error('Camera error:', error));
@@ -36,10 +36,7 @@ Camera.on('open', () => { console.log('Camera is connected');
 		terminal: false // Fixes duplicated input
 	});
 
-	// On line, we should be able to eval commands directly for the camera
-	// So if i wanted to move it, i could say do:
-	// move(Direction.Up, 8, 4);
-	// We will have to modify the input to call it against the camera scope
+	// Evaluate commands from the command line
 	rl.on('line', async (input) => {
 		// input = input.trim();
 		if(input.length === 0) return;
@@ -72,6 +69,7 @@ const io = new SocketIOServer(server);
 const __dirname = path.resolve();
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Setup the socket.io interface
 io.on('connection', (socket) => {
 	console.log('A user connected');
 	socket.on('disconnect', () => {
@@ -87,14 +85,20 @@ io.on('connection', (socket) => {
 	socket.on('move', (direction, panSpeed, tiltSpeed) => {
 		Camera.move(direction, panSpeed, tiltSpeed);
 	});
-	socket.on('position', (x, y, panSpeed, tiltSpeed) => {
-		// Camera.position(panSpeed, tiltSpeed, x, y, false); // TODO
+	socket.on('getPosition', () => {
+		Camera.positionInquiry().then((position) => {
+			socket.emit('position', position);
+		});
+	});
+	socket.on('moveTo', (panSpeed, tiltSpeed, x, y, W, H, relative) => {
+		Camera.moveTo(panSpeed, tiltSpeed, x, y, W, H, relative); // TODO
 	})
 	socket.on('moveStop', () => {
 		Camera.stop();
 	})
 });
 
+// Start the web server
 server.listen(webPORT, () => {
 	console.log(`Web server listening on port ${webPORT}`);
 });

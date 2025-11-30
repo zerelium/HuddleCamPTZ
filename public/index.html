@@ -1,24 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <script src="./main.js" type="module"></script>
-        <link rel="stylesheet" href="./main.css" />
-        <title>Huddlecam PTZ</title>
-    </head>
-    <body>
-        <controller> <!-- TODO: Use FontAwesome icons instead -->
-            <btn dir="4">Up-Left</btn><btn dir="0">Up</btn><btn dir="5">Up-Right</btn>
-            <btn dir="2">Left</btn><btn dir="h">Home</btn><btn dir="3">Right</btn>
-            <btn dir="6">Down-Left</btn><btn dir="1">Down</btn><btn dir="7">Down-Right</btn>
-        </controller>
-        <sliders>
-            <span id="panSpeed">08</span><span id="tiltSpeed">04</span>
-            <input type="range" orient="vertical" min="1" max="18" value="8" name="panSpeed" />
-            <input type="range" orient="vertical" min="1" max="14" value="4" name="tiltSpeed" />
-            <label for="panSpeed">Pan</label><label for="tiltSpeed">Tilt</label>
-            <input type="checkbox" id="show-feed">Show Feed</input>
-        </sliders>
-        <video id="feed" width="1080" autoplay></video>
-    </body>
+	<head>
+		<meta charset="utf-8" />
+		<script src="./main.js" type="module"></script>
+		<link rel="stylesheet" href="./main.css" />
+		<title>Huddlecam PTZ</title>
+	</head>
+	<body>
+		<controller> <!-- TODO: Use FontAwesome icons instead -->
+			<btn dir="4">Up-Left</btn><btn dir="0">Up</btn><btn dir="5">Up-Right</btn>
+			<btn dir="2">Left</btn><btn dir="h">Home</btn><btn dir="3">Right</btn>
+			<btn dir="6">Down-Left</btn><btn dir="1">Down</btn><btn dir="7">Down-Right</btn>
+		</controller>
+		<sliders>
+			<span id="panSpeed">08</span><span id="tiltSpeed">04</span>
+			<input type="range" orient="vertical" min="1" max="18" value="8" name="panSpeed" />
+			<input type="range" orient="vertical" min="1" max="14" value="4" name="tiltSpeed" />
+			<label for="panSpeed">Pan</label><label for="tiltSpeed">Tilt</label>
+			<input type="checkbox" id="show-feed">Show Feed</input>
+		</sliders>
+		<wrapper>
+			<crosshair>⊹</crosshair>
+			<video id="feed" width="1080" autoplay></video>
+		</wrapper>
+	</body>
 </html>
