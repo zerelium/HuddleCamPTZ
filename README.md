@@ -1,3 +1,8 @@
+> TODO: Refactor this library to be more generic and cover all VISCA protocol cameras. NodeViscaUSB?
+
+> See the [Sony VISCA protocol](https://pro.sony/s3/2022/09/14131603/VISCA-Command-List-Version-2.00.pdf)
+
+
 # HuddleCamPTZ
 
 This is a personal project that provides:
